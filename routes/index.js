@@ -13,17 +13,44 @@ router.post('/', (req, res) => {
 
     // ERROR CHECKING - DATES
     if(startDate > endDate){
-        var response = create_response(1, 'Error', "The start date should be less than or equal to the end date");
+        var response = create_response(1, "Error", "The start date should be less than or equal to the end date");
         res.send(response);
     }
     // ERROR CHECKING - COUNTS
     else if(minCount > maxCount){
-        var response = create_response(1, 'Error', "The minCount should be less than or equal to the maxCount");
+        var response = create_response(1, "Error", "The minCount should be less than or equal to the maxCount");
         res.send(response);
     }
     // NO ERROR
     else{
+        record.find({
+                    "createdAt": {"$gte": startDate, "$lte": endDate},
+                    $where: `this.counts.length >= ${minCount} && this.counts.length <= ${maxCount}`
+                    }, (err, records) => {
+
+            if(err)
+                throw err;
+    
+            // Push each record into our list
+            records.forEach(record => {
+                record_list.push(record);
+            });
+
+            // Create a response with error if the list is empty...
+            if(record_list.length == 0){
+                var response = create_response(0, "Success", "No record was found with the given attributes");
+                res.send(response);
+            }
+            // Otherwise, no error...
+            else{
+                var response = create_response(0, "Success", null);
+                delete response["description"];
+
+                response["records"] = record_list;
         
+                res.send(response);
+            }
+        });
     }
 });
 
