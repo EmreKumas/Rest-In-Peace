@@ -1,0 +1,23 @@
+{
+  "name": "rest-in-peace",
+  "version": "1.0.0",
+  "description": "A RESTful API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmreKumas/Rest-In-Peace.git"
+  },
+  "author": "Emre Kumaş",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmreKumas/Rest-In-Peace/issues"
+  },
+  "homepage": "https://github.com/EmreKumas/Rest-In-Peace#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.11"
+  }
+}
