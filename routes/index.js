@@ -5,9 +5,12 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     
-    var response = {'name': 'Emre Kumaş'};
-    res.send(response);
-    
+    record.find({key: 'nyOpG8k775EtWyZh'}, (err, record) => {
+        if(err)
+            throw err;
+
+        res.send(record);
+    });
 });
 
 module.exports = router;
