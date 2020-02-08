@@ -4,10 +4,7 @@ const RecordSchema = new mongoose.Schema({
     key: String,
     value: String,
     createdAt: Date,
-    counts: [{
-        id: Number,
-        value: Number
-    }]
+    counts: Array
 });
 
 const Record = mongoose.model('Record', RecordSchema);
