@@ -14,6 +14,7 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // Route
 app.use('/', require('./routes/index'));
