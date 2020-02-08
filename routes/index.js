@@ -31,9 +31,13 @@ router.post('/', (req, res) => {
             if(err)
                 throw err;
     
-            // Push each record into our list
+            // Push each record into our list...
             records.forEach(record => {
-                record_list.push(record);
+                record_list.push({
+                    "key": record.key,
+                    "createdAt": record.createdAt,
+                    "totalCount": record.counts.length
+                });
             });
 
             // Create a response with error if the list is empty...
@@ -47,7 +51,7 @@ router.post('/', (req, res) => {
                 delete response["description"];
 
                 response["records"] = record_list;
-        
+
                 res.send(response);
             }
         });
@@ -58,7 +62,7 @@ function create_response(code, msg, description){
     return {
         "code": code,
         "msg": msg,
-        "description": description 
+        "description": description
     };
 };
 
