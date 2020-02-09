@@ -2,9 +2,10 @@
   "name": "rest-in-peace",
   "version": "1.0.0",
   "description": "A RESTful API",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index"
+    "start": "node server",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,13 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.8.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.2",
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
